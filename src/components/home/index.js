@@ -3,14 +3,14 @@ import Tuits from "../tuits";
 import tuitsArray from "../tuits/tuits-data.json"
 
 const Home = () => {
-  return(
+  return (
     <div className="ttr-home">
       <div className="border border-bottom-0">
         <h4 className="fw-bold p-2">Home Screen</h4>
         <div className="d-flex">
           <div className="p-2">
             <img className="ttr-width-50px rounded-circle"
-                 src="../images/nasa-logo.jpg"/>
+              src="../images/nasa-logo.jpg" alt="nasa" />
           </div>
           <div className="p-2 w-100">
             <textarea
@@ -35,7 +35,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Tuits tuits={tuitsArray}/>
+      <Tuits tuits={tuitsArray} />
     </div>
   );
 };
