@@ -1,10 +1,8 @@
-import { UserList } from "../components/profile/userList";
+import axios from "axios";
+import { UserList } from "../components/profile/user-list";
 import { screen, render } from "@testing-library/react";
 import { HashRouter } from "react-router-dom";
-import { findAllUsers } from "../services/users-service";
-import axios from "axios";
-
-jest.mock('axios');
+import { createUser, deleteUser, findAllUsers } from "../services/users-service";
 
 const MOCKED_USERS = [
   { username: 'ellen_ripley', password: 'lv426', email: 'repley@weyland.com', _id: "123" },
@@ -21,6 +19,8 @@ test('user list renders static user array', () => {
 });
 
 test('user list renders async', async () => {
+  // let create one user
+  const newUser = await createUser({ username: 'NASA', password: 'lv426', email: 'repley@weyland.com', firstName: 'NASA' });
   const users = await findAllUsers();
   render(
     <HashRouter>
@@ -28,19 +28,6 @@ test('user list renders async', async () => {
     </HashRouter>);
   const linkElement = screen.getByText(/NASA/i);
   expect(linkElement).toBeInTheDocument();
-})
-
-test('user list renders mocked', async () => {
-  axios.get.mockImplementation(() =>
-    Promise.resolve({ data: { users: MOCKED_USERS } }));
-  const response = await findAllUsers();
-  const users = response.users;
-
-  render(
-    <HashRouter>
-      <UserList users={users} />
-    </HashRouter>);
-
-  const user = screen.getByText(/ellen_ripley/i);
-  expect(user).toBeInTheDocument();
+  // remove the above created user
+  await deleteUser(newUser._id);
 });

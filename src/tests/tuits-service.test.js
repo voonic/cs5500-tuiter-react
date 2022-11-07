@@ -79,5 +79,10 @@ describe('Tuits REST API test', () => {
     const tuitsWeInserted = allTuits.filter(
       tuit => tuitsMap.indexOf(tuit.tuit) >= 0);
 
+    // delete the tuits we created.
+    allTuits.map(tuit =>
+      deleteTuit(tuit._id)
+    );
+
   });
 });
