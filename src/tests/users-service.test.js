@@ -9,7 +9,8 @@ describe('createUser', () => {
   const ripley = {
     username: 'ellenripley',
     password: 'lv426',
-    email: 'ellenripley@aliens.com'
+    email: 'ellenripley@aliens.com',
+    firstName: 'ripley',
   };
 
   // setup test before running test
@@ -32,6 +33,7 @@ describe('createUser', () => {
     expect(newUser.username).toEqual(ripley.username);
     expect(newUser.password).toEqual(ripley.password);
     expect(newUser.email).toEqual(ripley.email);
+    expect(newUser.firstName).toEqual(ripley.firstName);
   });
 });
 
@@ -65,7 +67,7 @@ describe('deleteUsersByUsername', () => {
   });
 });
 
-describe('findUserById',  () => {
+describe('findUserById', () => {
   // sample user we want to retrieve
   const adam = {
     username: 'adam_smith',
@@ -105,7 +107,7 @@ describe('findUserById',  () => {
 });
 
 
-describe('findAllUsers',  () => {
+describe('findAllUsers', () => {
 
   // sample users we'll insert to then retrieve
   const usernames = [
