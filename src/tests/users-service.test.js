@@ -16,13 +16,13 @@ describe('createUser', () => {
   // setup test before running test
   beforeAll(() => {
     // remove any/all users to make sure we create it in the test
-    //return deleteUsersByUsername(ripley.username);
+    return deleteUsersByUsername(ripley.username);
   })
 
   // clean up after test runs
   afterAll(() => {
     // remove any data we created
-    //return deleteUsersByUsername(ripley.username);
+    return deleteUsersByUsername(ripley.username);
   })
 
   test('can insert new users with REST API', async () => {
@@ -36,14 +36,15 @@ describe('createUser', () => {
     expect(newUser.firstName).toEqual(ripley.firstName);
   });
 });
-/** 
+
 describe('deleteUsersByUsername', () => {
 
   // sample user to delete
   const sowell = {
     username: 'thommas_sowell',
     password: 'compromise',
-    email: 'compromise@solutions.com'
+    email: 'compromise@solutions.com',
+    firstName: 'thomas',
   };
 
   // setup the tests before verification
@@ -72,7 +73,8 @@ describe('findUserById', () => {
   const adam = {
     username: 'adam_smith',
     password: 'not0sum',
-    email: 'wealth@nations.com'
+    email: 'wealth@nations.com',
+    firstName: 'adam',
   };
 
   // setup before running test
@@ -121,7 +123,8 @@ describe('findAllUsers', () => {
       createUser({
         username,
         password: `${username}123`,
-        email: `${username}@stooges.com`
+        email: `${username}@stooges.com`,
+        firstName: username,
       })
     )
   );
@@ -154,4 +157,3 @@ describe('findAllUsers', () => {
     });
   });
 });
-**/
