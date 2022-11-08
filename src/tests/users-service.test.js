@@ -117,17 +117,21 @@ describe('findAllUsers', () => {
   ];
 
   // setup data before test
-  beforeAll(() =>
+  beforeAll(async () => {
+    let promises = [];
     // insert several known users
     usernames.map(username =>
-      createUser({
-        username,
-        password: `${username}123`,
-        email: `${username}@stooges.com`,
-        firstName: username,
-      })
+      promises.push(
+        createUser({
+          username,
+          password: `${username}123`,
+          email: `${username}@stooges.com`,
+          firstName: username,
+        })
+      )
     )
-  );
+    await Promise.all(promises);
+  });
 
   // clean up after ourselves
   afterAll(() =>

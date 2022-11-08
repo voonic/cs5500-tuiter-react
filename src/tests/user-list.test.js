@@ -19,13 +19,13 @@ test('user list renders static user array', () => {
 
 test('user list renders async', async () => {
   // let create one user
-  const newUser = await createUser({ username: 'NASA', password: 'lv426', email: 'repley@weyland.com', firstName: 'NASA' });
+  const newUser = await createUser({ username: 'COOKIE', password: 'lv426', email: 'repley@weyland.com', firstName: 'DUNN' });
   const users = await findAllUsers();
   render(
     <HashRouter>
       <UserList users={users} />
     </HashRouter>);
-  const linkElement = screen.getByText(/NASA/i);
+  const linkElement = screen.getByText(/COOKIE/i);
   expect(linkElement).toBeInTheDocument();
   // remove the above created user
   await deleteUser(newUser._id);

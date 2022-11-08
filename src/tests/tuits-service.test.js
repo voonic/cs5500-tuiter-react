@@ -62,12 +62,16 @@ describe('Tuits REST API test', () => {
   test('can retrieve all tuits with REST API', async () => {
     const tuitsMap = ["tuit one", "tuit two", "tuit three"];
     // insert several known tuits
+    let promises = [];
     tuitsMap.map(tuitStr =>
-      createTuit({
-        tuit: tuitStr,
-        postedBy: newUser._id,
-      })
+      promises.push(
+        createTuit({
+          tuit: tuitStr,
+          postedBy: newUser._id,
+        })
+      )
     );
+    await Promise.all(promises);
 
     // find the all tuits
     const allTuits = await findAllTuits();
