@@ -1,5 +1,6 @@
 import axios from "axios";
-const BASE_URL = "http://ec2-54-164-88-1.compute-1.amazonaws.com:4000";
+const BASE_URL = process.env.REACT_APP_BASE_URL
+//const BASE_URL = "http://ec2-54-164-88-1.compute-1.amazonaws.com:4000";
 // const BASE_URL = "https://software-engineering-node-fa22.herokuapp.com/api";
 //const BASE_URL = "http://localhost:4000";
 const TUITS_API = `${BASE_URL}/tuits`;
