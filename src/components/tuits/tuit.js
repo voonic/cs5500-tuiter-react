@@ -9,7 +9,7 @@ const Tuit = ({ tuit, deleteTuit, uid }) => {
       <div className="pe-2">
         {
           tuit.postedBy &&
-          <img src={`../images/${tuit.postedBy.username}.jpg`}
+          <img src={`../images/${tuit.postedBy.profilePhoto}`}
             className="ttr-tuit-avatar-logo rounded-circle" />
         }
       </div>
@@ -20,8 +20,7 @@ const Tuit = ({ tuit, deleteTuit, uid }) => {
         <h2
           className="fs-5">
           {tuit.postedBy && tuit.postedBy.username}
-          @{tuit.postedBy && tuit.postedBy.username} -
-          {tuit.published}</h2>
+          @{tuit.postedBy && tuit.postedBy.username}</h2>
         {tuit.tuit}
         {
           tuit.youtube &&

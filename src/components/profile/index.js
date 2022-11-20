@@ -23,14 +23,17 @@ const Profile = () => {
       <h4>{profile.username}</h4>
       <h6>@{profile.username}</h6>
       <button onClick={logout}>Logout</button>
-      <ul className="mt-4 nav nav-pills nav-fill">
-        <li className="nav-item">
-          <Link to="/profile/mytuits"
-            className="nav-link active">
-            My Tuits</Link>
-        </li>
-      </ul>
       <Routes>
+        <Route index
+          element={(
+            <ul className="mt-4 nav nav-pills nav-fill">
+              <li className="nav-item">
+                <Link to="/profile/mytuits"
+                  className="nav-link active">
+                  My Tuits</Link>
+              </li>
+            </ul>
+          )} />
         <Route path="/mytuits"
           element={<MyTuits />} />
       </Routes>
