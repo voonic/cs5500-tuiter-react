@@ -80,7 +80,7 @@ const Home = () => {
           </div>
         }
       </div>
-      <Tuits tuits={tuits} deleteTuit={deleteTuit} />
+      <Tuits tuits={tuits} deleteTuit={deleteTuit} uid={uid} />
     </div>
   );
 };
