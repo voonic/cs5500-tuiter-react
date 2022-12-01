@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as likesService from "../../services/likes-service";
 import TuitStats from "./tuit-stats";
 import TuitImage from "./tuit-image";
@@ -10,19 +10,38 @@ const Tuit = ({ tuit, deleteTuit, uid }) => {
   const [dislikes, setDislikes] = useState(tuit.dislikes);
   const [state, setState] = useState();
 
+  const getLikesData = async () => {
+    if (uid) {
+      const likesData = await likesService.getTuitLikesdata(uid, tuit._id);
+      if (likesData) {
+        setState(likesData.type ? "liked" : "disliked");
+      }
+    }
+  }
+
   const toggleLike = async () => {
-    const likesData = await likesService.userTogglesTuitLikes(uid, tuit._id);
-    setLikes(likesData.likes);
-    setDislikes(likesData.dislikes);
-    setState(likesData.state);
+    if (uid) {
+      const likesData = await likesService.userTogglesTuitLikes(uid, tuit._id);
+      setLikes(likesData.likes);
+      setDislikes(likesData.dislikes);
+      setState(likesData.state);
+    } else {
+      alert("Please login first");
+    }
   }
 
   const toggleDislike = async () => {
-    const likesData = await likesService.userTogglesTuitDislikes(uid, tuit._id);
-    setLikes(likesData.likes);
-    setDislikes(likesData.dislikes);
-    setState(likesData.state);
+    if (uid) {
+      const likesData = await likesService.userTogglesTuitDislikes(uid, tuit._id);
+      setLikes(likesData.likes);
+      setDislikes(likesData.dislikes);
+      setState(likesData.state);
+    } else {
+      alert("Please login first");
+    }
   }
+
+  useEffect(getLikesData, []);
 
   return (
     <li className="p-2 ttr-tuit list-group-item d-flex rounded-0">

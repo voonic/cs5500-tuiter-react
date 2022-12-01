@@ -21,6 +21,7 @@ const Home = () => {
       const user = await authService.profile();
       setUid(user._id);
     } catch (e) {
+      setUid(null);
     }
   }
 
@@ -47,7 +48,7 @@ const Home = () => {
       <div className="border border-bottom-0">
         <h4 className="fw-bold p-2">Home Screen</h4>
         {
-          uid &&
+          !!uid &&
           <div className="d-flex">
             <div className="p-2">
               <img className="ttr-width-50px rounded-circle"
