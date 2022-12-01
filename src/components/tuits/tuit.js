@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import * as likesService from "../../services/likes-service";
 import TuitStats from "./tuit-stats";
 import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 
 const Tuit = ({ tuit, deleteTuit, uid }) => {
+
+  const [likes, setLikes] = useState(tuit.likes);
+  const [dislikes, setDislikes] = useState(tuit.dislikes);
+  const [state, setState] = useState();
+
+  const toggleLike = async () => {
+    const likesData = await likesService.userTogglesTuitLikes(uid, tuit._id);
+    setLikes(likesData.likes);
+    setDislikes(likesData.dislikes);
+    setState(likesData.state);
+  }
+
+  const toggleDislike = async () => {
+    const likesData = await likesService.userTogglesTuitDislikes(uid, tuit._id);
+    setLikes(likesData.likes);
+    setDislikes(likesData.dislikes);
+    setState(likesData.state);
+  }
+
   return (
     <li className="p-2 ttr-tuit list-group-item d-flex rounded-0">
       <div className="pe-2">
@@ -30,7 +50,15 @@ const Tuit = ({ tuit, deleteTuit, uid }) => {
           tuit.image &&
           <TuitImage tuit={tuit} />
         }
-        <TuitStats tuit={tuit} />
+        <TuitStats
+          tuit={tuit}
+          likes={likes}
+          dislikes={dislikes}
+          state={state}
+          uid={uid}
+          toggleDislike={toggleDislike}
+          toggleLike={toggleLike}
+        />
       </div>
     </li>
   );
