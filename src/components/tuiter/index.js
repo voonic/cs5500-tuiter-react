@@ -18,7 +18,7 @@ import MovieDetails from "../movies/details";
 
 function Tuiter() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className="container">
         <div className="ttr-tuiter">
           <div className="ttr-left-column">
@@ -49,7 +49,7 @@ function Tuiter() {
           </div>
         </div>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 export default Tuiter;

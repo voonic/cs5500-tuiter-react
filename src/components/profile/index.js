@@ -27,10 +27,20 @@ const Profile = () => {
         <Route index
           element={(
             <ul className="mt-4 nav nav-pills nav-fill">
-              <li className="nav-item">
+              <li className="nav-item me-3">
                 <Link to="/profile/mytuits"
                   className="nav-link active">
                   My Tuits</Link>
+              </li>
+              <li className="nav-item me-3">
+                <Link to="/profile/my-liked-tuits"
+                  className="nav-link active">
+                  My Liked Tuits</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/profile/my-desliked-tuits"
+                  className="nav-link active">
+                  My Disliked Tuits</Link>
               </li>
             </ul>
           )} />
