@@ -45,7 +45,7 @@ const Profile = () => {
             </ul>
           )} />
         <Route path="/mytuits"
-          element={<MyTuits />} />
+          element={<MyTuits uid={profile._id} />} />
       </Routes>
     </div>
   );
