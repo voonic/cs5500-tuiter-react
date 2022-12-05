@@ -3,32 +3,34 @@ import * as service from "../../services/tuits-service";
 import * as likeService from "../../services/likes-service";
 import Tuits from "../tuits";
 
-const MyDislikedTuits = ({ uid }) => {
+const MyLikedTuits = ({ uid }) => {
   const [tuits, setTuits] = useState([]);
-  const findMyDislikedTuits = () => {
-    likeService.getMyDislikedTuits(uid)
+  const findMyLikedTuits = () =>
+    likeService.getMyLikedTuits(uid)
       .then(likeArray => {
         let tuitsArr = [];
         likeArray.forEach(likeObj => {
-          tuitsArr.push(likeObj.tuit);
+          if (likeObj.tuit) {
+            tuitsArr.push(likeObj.tuit);
+          }
         });
         setTuits(tuitsArr);
       });
-  }
 
-  useEffect(findMyDislikedTuits, [uid]);
+
+  useEffect(findMyLikedTuits, [uid]);
   const deleteTuit = (tid) =>
     service.deleteTuit(tid)
-      .then(findMyDislikedTuits);
+      .then(findMyLikedTuits);
   return (
     <div>
       <p></p>
-      <h5>My Disliked Tuits</h5>
+      <h5>My Liked Tuits</h5>
       <Tuits tuits={tuits}
-        deleteTuit={deleteTuit} uid={uid} dislikeCallback={findMyDislikedTuits} likeCallback={findMyDislikedTuits} />
+        deleteTuit={deleteTuit} uid={uid} likeCallback={findMyLikedTuits} dislikeCallback={findMyLikedTuits} />
     </div>
   );
 };
 
-export default MyDislikedTuits;
+export default MyLikedTuits;
 
