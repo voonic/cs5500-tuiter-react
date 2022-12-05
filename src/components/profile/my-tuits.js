@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import * as service from "../../services/tuits-service";
 import Tuits from "../tuits";
 
-const MyTuits = () => {
+const MyTuits = ({ uid }) => {
   const [tuits, setTuits] = useState([]);
   const findMyTuits = () =>
     service.findTuitByUser("me")
@@ -16,7 +16,7 @@ const MyTuits = () => {
       <p></p>
       <h5>My Tuits</h5>
       <Tuits tuits={tuits}
-        deleteTuit={deleteTuit} />
+        deleteTuit={deleteTuit} uid={uid} />
     </div>
   );
 };

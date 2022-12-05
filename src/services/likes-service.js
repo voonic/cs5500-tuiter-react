@@ -19,3 +19,11 @@ export const getTuitLikesdata = (uid, tid) =>
   api.get(`${USERS_API}/${uid}/likedata/${tid}`)
     .then(response => response.data);
 
+export const getMyLikedTuits = (uid) =>
+  api.get(`${USERS_API}/${uid}/likes`)
+    .then(response => response.data);
+
+
+export const getMyDislikedTuits = (uid) =>
+  api.get(`${USERS_API}/${uid}/dislikes`)
+    .then(response => response.data);
