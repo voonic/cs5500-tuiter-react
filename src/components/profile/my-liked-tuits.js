@@ -27,7 +27,7 @@ const MyLikedTuits = ({ uid }) => {
       <p></p>
       <h5>My Liked Tuits</h5>
       <Tuits tuits={tuits}
-        deleteTuit={deleteTuit} uid={uid} />
+        deleteTuit={deleteTuit} uid={uid} likeCallback={findMyLikedTuits} dislikeCallback={findMyLikedTuits} />
     </div>
   );
 };

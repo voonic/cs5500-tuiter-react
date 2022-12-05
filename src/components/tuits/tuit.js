@@ -4,7 +4,7 @@ import TuitStats from "./tuit-stats";
 import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 
-const Tuit = ({ tuit, deleteTuit, uid }) => {
+const Tuit = ({ tuit, deleteTuit, uid, likeCallback, dislikeCallback }) => {
 
   const [likes, setLikes] = useState(tuit.likes);
   const [dislikes, setDislikes] = useState(tuit.dislikes);
@@ -25,6 +25,9 @@ const Tuit = ({ tuit, deleteTuit, uid }) => {
       setLikes(likesData.likes);
       setDislikes(likesData.dislikes);
       setState(likesData.state);
+      if (likeCallback) {
+        likeCallback();
+      }
     } else {
       alert("Please login first");
     }
@@ -36,6 +39,9 @@ const Tuit = ({ tuit, deleteTuit, uid }) => {
       setLikes(likesData.likes);
       setDislikes(likesData.dislikes);
       setState(likesData.state);
+      if (dislikeCallback) {
+        dislikeCallback();
+      }
     } else {
       alert("Please login first");
     }
